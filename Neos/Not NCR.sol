@@ -149,20 +149,28 @@ contract NeosCredits is ERC20, Owned, SafeMath {
 
 
     function stake(uint256 tokens) public returns (bool) {
-    require(tokens <= balances[msg.sender], "Not enough tokens");
+    require(tokens > 0, "Cannot stake 0 tokens");
+    require(tokens <= balances[msg.sender], "Not enough tokens to stake");
+    
     balances[msg.sender] = safeSub(balances[msg.sender], tokens);
     staking[msg.sender] = safeAdd(staking[msg.sender], tokens);
+    
     emit Transfer(msg.sender, address(this), tokens);
     emit Staked(msg.sender, tokens);
-
+    
     return true;
     }
-    
+
     function unstake(uint256 tokens) public returns (bool) {
-    require(tokens <= staking[msg.sender], "Not enough staked tokens");
+    require(tokens > 0, "Cannot unstake 0 tokens");
+    require(tokens <= staking[msg.sender], "Not enough staked tokens to withdraw");
+    
     staking[msg.sender] = safeSub(staking[msg.sender], tokens);
     balances[msg.sender] = safeAdd(balances[msg.sender], tokens);
+    
     emit Transfer(address(this), msg.sender, tokens);
+    emit Staked(msg.sender, tokens);
+    
     return true;
     }
 }

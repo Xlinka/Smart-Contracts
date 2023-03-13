@@ -4,7 +4,8 @@ This smart contract was written by Xlinka as a concept to see how easy it was to
 to create a basic ERC20 token, but it had several security issues and potential exploits. This updated version of the contract
 fixes those issues and provides a more secure implementation of the ERC20 standard.
 
-Also was written as to prove a point its not hard to code any of this.
+this was also written to prove a point that its not hard to rewrite the contract to update it to modern standards this took me 10 mins
+
 */
 pragma solidity ^0.8.0;
 pragma abicoder v2;

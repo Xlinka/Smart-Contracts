@@ -39,9 +39,11 @@ interface ERC20 {
     function approve(address spender, uint256 value) external returns (bool);
     function transferFrom(address from, address to, uint256 value) external returns (bool);
     function allowance(address owner, address spender) external view returns (uint256);
-
+ 
     event Transfer(address indexed from, address indexed to, uint256 value);
     event Approval(address indexed owner, address indexed spender, uint256 value);
+    event Staked(address indexed user, uint256 amount);
+
 }
 
 abstract contract ApproveAndCallFallback {
@@ -79,6 +81,7 @@ contract NeosCredits is ERC20, Owned, SafeMath {
 
     mapping(address => uint256) public balances;
     mapping(address => mapping(address => uint256)) public allowed;
+    mapping(address => uint256) public staking;
 
     constructor() {
         balances[0xE581eFBa0B2a360Dc66443289a50660e9F44aC81] = _totalSupply;
@@ -89,9 +92,14 @@ contract NeosCredits is ERC20, Owned, SafeMath {
     return _totalSupply;
     }
 
-
+    //old function
+    //function balanceOf(address account) public view override returns (uint256) {
+    //    return balances[account];
+    //}
+    
+    //new balance with staking
     function balanceOf(address account) public view override returns (uint256) {
-        return balances[account];
+    return safeAdd(balances[account], staking[account]);
     }
 
     function transfer(address to, uint256 tokens) public returns (bool) {
@@ -138,4 +146,24 @@ contract NeosCredits is ERC20, Owned, SafeMath {
         }
         return size > 0;
     }
+
+
+    function stake(uint256 tokens) public returns (bool) {
+    require(tokens <= balances[msg.sender], "Not enough tokens");
+    balances[msg.sender] = safeSub(balances[msg.sender], tokens);
+    staking[msg.sender] = safeAdd(staking[msg.sender], tokens);
+    emit Transfer(msg.sender, address(this), tokens);
+    emit Staked(msg.sender, tokens);
+
+    return true;
+    }
+    
+    function unstake(uint256 tokens) public returns (bool) {
+    require(tokens <= staking[msg.sender], "Not enough staked tokens");
+    staking[msg.sender] = safeSub(staking[msg.sender], tokens);
+    balances[msg.sender] = safeAdd(balances[msg.sender], tokens);
+    emit Transfer(address(this), msg.sender, tokens);
+    return true;
+    }
 }
+

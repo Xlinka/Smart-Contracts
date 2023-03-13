@@ -3,6 +3,8 @@
 This smart contract was written by Xlinka as a concept to see how easy it was to learn Solidity. The goal of this contract was
 to create a basic ERC20 token, but it had several security issues and potential exploits. This updated version of the contract
 fixes those issues and provides a more secure implementation of the ERC20 standard.
+
+Also was written as to prove a point its not hard to code any of this.
 */
 pragma solidity ^0.8.0;
 pragma abicoder v2;

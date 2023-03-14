@@ -1,7 +1,7 @@
 // SPDX-License-Identifier: AGPL-3.0-only	
 pragma solidity ^0.8.0;
-import "./NCR_2_0_Owned.sol";
-import "./NCR_2_0_SafeMath.sol";
+import "./Etherial_Owned.sol";
+import "./Etherial_SafeMath.sol";
 
 interface ERC20 {
     function totalSupply() external view returns (uint256);

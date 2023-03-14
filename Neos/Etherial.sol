@@ -8,18 +8,18 @@ this was also written to prove a point that its not hard to rewrite the contract
 
 */
 pragma solidity ^0.8.0;
-import "./NCR_2_0_Owned.sol";
-import "./NCR_2_0_SafeMath.sol";
-import "./NCR_2_0_ERC20.sol";
-//import "./NCR_2_0_Staking.sol"; not finished implimenting
+import "./Etherial_Owned.sol";
+import "./Etherial_SafeMath.sol";
+import "./Etherial_ERC20.sol";
+//import "./Etherial_Staking.sol"; not finished implimenting
 
 abstract contract ApproveAndCallFallback {
     function receiveApproval(address from, uint256 value, address token, bytes calldata data) external virtual;
 }
 
 contract NeosCredits is ERC20, Owned, SafeMath {
-    string public constant symbol = "NCR 2.0";
-    string public constant name = "Neos Credits 2.0";
+    string public constant symbol = "ECR";
+    string public constant name = "Etherial Credits";
     uint8 public constant decimals = 18;
     uint256 public constant _totalSupply = 50000000000000000000000000;
 

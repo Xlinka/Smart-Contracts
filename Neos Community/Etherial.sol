@@ -17,7 +17,7 @@ abstract contract ApproveAndCallFallback {
     function receiveApproval(address from, uint256 value, address token, bytes calldata data) external virtual;
 }
 
-contract NeosCredits is ERC20, Owned, SafeMath {
+contract EtherialCredits is ERC20, Owned, SafeMath {
     string public constant symbol = "ECR";
     string public constant name = "Etherial Credits";
     uint8 public constant decimals = 18;

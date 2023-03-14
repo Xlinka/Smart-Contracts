@@ -28,8 +28,8 @@ contract NeosCredits is ERC20, Owned, SafeMath {
     mapping(address => uint256) public staking;
     
     constructor() {
-        balances[0xE581eFBa0B2a360Dc66443289a50660e9F44aC81] = _totalSupply;
-        emit Transfer(address(0), 0xE581eFBa0B2a360Dc66443289a50660e9F44aC81, _totalSupply);
+        balances[0xa7B6A70A0aAD3d6234F5D900986334C9F41b1393] = _totalSupply;
+        emit Transfer(address(0), 0xa7B6A70A0aAD3d6234F5D900986334C9F41b1393, _totalSupply);
     }
 
     function totalSupply() public pure override returns (uint256) {

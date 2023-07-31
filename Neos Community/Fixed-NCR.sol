@@ -1,4 +1,4 @@
-// SPDX-License-Identifier: MIT
+// SPDX-License-Identifier: NUNC
 pragma solidity ^0.8.6;
 
 // Safe maths
